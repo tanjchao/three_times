@@ -131,41 +131,26 @@
 .score-burst.show{display:block!important;opacity:1!important;animation:scoreModalIn .24s cubic-bezier(.2,.9,.25,1) both!important;}
 .score-burst .score-confirm{pointer-events:auto!important;}
 .portal-return{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#755b89!important;color:#fff!important;border-radius:12px;padding:12px 16px;font-weight:850;min-height:44px}.portal-return:focus-visible{outline:3px solid #e4ba70;outline-offset:3px}.test-notice{background:#fff3d6;border:1px solid #dbbb7c;color:#65451f;padding:12px 16px;border-radius:12px;margin:12px 0 20px;font-size:13px;font-weight:700;line-height:1.65}
-/* 孟母三遷：天降文字雨，單章兩句（不加分，維持原雲端分數上限） */
-#rainGame{display:none;border-radius:20px;padding:18px 14px 22px;margin:18px 0;background:linear-gradient(160deg,#f4e6c9,#fbf6ea);border:3px solid #c6a06b;box-shadow:0 9px 25px #62492d24;text-align:center}
-#rainGame.show{display:block}
-#rainGame h2{font-size:clamp(22px,5.5vw,30px);margin:4px 0 7px;color:#6e4930}
-#rainGame .rain-desc{margin:5px 0 12px;color:#6f594b;font-weight:700;line-height:1.65}
-.rain-meter{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:10px auto;max-width:650px;font-weight:900;color:#775135}
-#rainSlots{display:flex;flex-wrap:nowrap;justify-content:center;gap:5px;margin:10px auto 14px;max-width:650px}
-.rain-slot{min-width:0;flex:1 1 0;max-width:66px;aspect-ratio:1/1;display:flex;justify-content:center;align-items:center;border:2px dashed #a88866;border-radius:10px;background:#fffdf6;color:#866c57;font-size:clamp(20px,5vw,30px);font-weight:950;box-shadow:inset 0 2px 6px #0000000c}
-.rain-slot.done{border:2px solid #669c74;background:#e0f4de;color:#236c43;animation:rainPlaced .25s ease}
-.rain-slot.next{border:3px solid #df9b38;box-shadow:0 0 0 3px #edb85830}
-@keyframes rainPlaced{from{transform:scale(1.22)}to{transform:scale(1)}}
-#rainField{height:clamp(300px,52vh,440px);max-width:680px;margin:0 auto;position:relative;overflow:hidden;border:3px solid #96734c;border-radius:17px;background:radial-gradient(ellipse at 50% 10%,#577d84,#2c4e5b 65%,#203b43);box-shadow:inset 0 7px 18px #08171b66;touch-action:manipulation}
-#rainField:before{content:'✦　✧　　 ✦　　　 ✧';position:absolute;top:12%;left:5%;right:5%;font-size:20px;color:#ffffff3b;pointer-events:none}
-#rainField:after{content:'';position:absolute;bottom:0;left:0;right:0;height:20px;background:linear-gradient(transparent,#dcb36f3c);pointer-events:none}
-.rain-drop{position:absolute;top:0;left:0;display:grid;place-items:center;width:clamp(45px,10vw,61px);height:clamp(45px,10vw,61px);padding:0;border:2px solid #ffdd93;border-radius:12px;background:linear-gradient(140deg,#fff8da,#eecb84);color:#51301d;font-family:inherit;font-size:clamp(26px,6vw,34px);font-weight:950;box-shadow:0 4px 0 #936d37,0 8px 17px #0008;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none;will-change:transform}
-.rain-drop:active{filter:brightness(1.23)}
-.rain-drop.correct{background:#c9f6c6;border-color:#4fa367;color:#18673d}
-.rain-drop.wrong{background:#ffe0dd;border-color:#d57564;color:#9b392f}
-#rainMessage{min-height:2.6em;max-width:670px;margin:13px auto 6px;font-weight:900;line-height:1.4;font-size:clamp(16px,4.5vw,21px);color:#775039}
-.rain-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:9px 0 3px}
-.rain-controls button{min-height:46px;border:0;border-radius:12px;padding:10px 18px;background:#79583b;color:#fff;font-size:16px;font-weight:850}
-.rain-controls button:disabled{opacity:.45}
-.rain-finish{animation:rainWin .7s ease both}
-@keyframes rainWin{0%{filter:brightness(1)}40%{filter:brightness(1.8)}100%{filter:brightness(1)}}
-@media(max-width:420px){#rainGame{padding:14px 9px}#rainSlots{gap:3px}.rain-slot{font-size:clamp(18px,6vw,26px);border-radius:7px}#rainField{height:340px}.rain-drop{width:47px;height:47px;font-size:27px}}
-@media(prefers-reduced-motion:reduce){.rain-slot.done,.rain-finish{animation:none}}
-</style></head><body><main class="app"><header><div class="eyebrow">說文解圖 · 初入書院 · 一章6句</div><h1>《孟母三遷》</h1><p>古文原句 × 孟母擇鄰｜閱讀原文，破解經典插畫</p><p style="font-size:12px;opacity:.8;margin-top:6px">跟隨孟母三次擇鄰，體會環境與教育的重要。</p></header><div id="game"><div class="topline"><span id="progressLabel">第 1 / 12 句</span><span id="score">得分 0</span></div><div class="progress"><div id="progressFill"></div></div><div class="play-area"><section class="card"><div class="tag" id="chapterLabel">第一章・情節配對</div><p class="sentence" id="sentence"></p><div class="question-tools"><button class="translate-btn" id="translateToggle" type="button">📖 查看白話翻譯</button><div class="combo-badge" id="comboBadge" aria-live="polite">🔥 COMBO <span class="combo-number" id="comboNumber">0</span></div></div><div class="translation" id="translation" hidden></div><div class="target" id="target"><span class="plus">＋</span><span>選擇下方插畫填入</span></div><div id="feedback" class="feedback" aria-live="polite"></div></section><section class="library"><div class="library-head"><h2>候選插畫</h2><span id="remaining" class="tag"></span></div><p class="sub">點選縮圖 → 放大觀看 → 確認作答（每題固定4張）</p><div class="choices" id="choices"></div><div class="controls"><button id="reset">重新開始</button><button id="sound">音效：開</button><button id="music">♫ 背景音樂：準備中</button></div></section></div></div><section id="sorting" class="review"><h2 id="sortTitle">本章情節排序挑戰</h2><p class="sub">依故事順序點選下方「圖片＋原文」，放入上方對應位置。點擊已放入的圖片可以卸下。</p><div id="sortStats" class="tag"></div><button class="next sort-leaderboard" id="sortLeaderboard" type="button">🏆 查看排行榜</button><div class="sort-assists"><button class="next" id="sortHint" type="button" hidden>💡 幫我排一張</button><button class="next" id="sortRescue" type="button" hidden>🆘 幫我完成剩下排序</button></div><h3 class="sort-subtitle">故事順序（空格為窄條，放入後展開；點擊可卸下）</h3><div id="sortSlots" class="sort-slots"></div><h3 class="sort-subtitle">待排序漫畫</h3><div id="sortPool" class="sort-pool"></div><p id="sortFeedback" class="feedback" aria-live="polite"></p><button class="next" id="checkSort" disabled>確認排序</button></section><section id="rainGame" class="review" aria-label="天降文字雨小遊戲">
-<h2>🌧️ 孟母三遷・天降文字雨</h2>
-<p class="rain-desc">原有六張漫畫排序已完成！現在挑戰兩句古文：<strong>依原文順序，點擊正確的下落文字</strong>，接滿一整句即可過關。錯字不扣分。</p>
-<div class="rain-meter"><span id="rainRound">第 1 / 2 句</span><span id="rainCaught">已接 0 / 5 字</span></div>
-<div id="rainSlots" aria-label="已完成的字牌"></div>
-<div id="rainField" aria-label="下落文字區域"></div>
-<p id="rainMessage" aria-live="polite">請接住第一個正確文字！</p>
-<div class="rain-controls"><button id="rainHint" type="button">💡 提示下一字</button><button id="rainRestart" type="button">🔄 重玩本句</button><button id="rainPause" type="button">⏸ 暫停</button></div>
-</section><section id="review" class="review"><h2>🎉 章節完成！本章漫畫回顧</h2><p class="sub">依照故事順序回顧本章各幅插畫與古文。</p><div class="review-grid" id="reviewGrid"></div><button class="next" id="again">進入下一章</button></section><section id="complete" class="review"><div class="complete-head"><h2>🎉 孟母三遷挑戰完成！6句完整連環漫畫</h2><div class="final-score" id="finalScore"><div class="breakdown"><div class="breakdown-row"><span>基本得分</span><strong id="finalBase">0</strong></div><div class="breakdown-row"><span>⚡速度獎勵</span><span class="score-plus" id="finalSpeed">+0</span></div><div class="breakdown-row"><span>🔥 Combo獎勵</span><span class="score-plus" id="finalCombo">+0</span></div><div class="breakdown-row breakdown-total"><span>最終得分</span><strong id="finalTotal">0</strong></div></div></div></div><p class="sub">孟母三遷的故事已全部完成，可向下欣賞六幅漫畫與原文。</p><div class="academy-finish" id="academyFinish" aria-live="polite" hidden></div><div class="complete-actions"><button class="next" id="showLeaderboard">🏆 查看排行榜</button><a class="next portal-return" id="portalReturn" href="https://tanjchao.github.io/Shuowen-Jietu/index.html">🏮 返回說文解圖書院</a><button class="next" id="restartAll">重新挑戰6句</button></div><div class="review-grid" id="completeGrid"></div></section><p class="note">選圖答對100分，答錯前兩次各扣50分｜⚡ 0～5秒 +50、6～10秒 +10｜🔥 5秒內首次答對連擊：2 Combo +10、3 Combo +20、4 Combo +30、5 Combo以上 +50｜排序首輪每格50分、第二輪25分、第三輪起自行答對10分；系統提示0分</p></main><div id="playerStart" class="start-overlay"><div class="start-panel"><h2>《孟母三遷》挑戰</h2><p>請先輸入玩家姓名。完成挑戰後，成績會登上排行榜。</p><input id="playerNameInput" type="text" maxlength="12" autocomplete="off" placeholder="輸入姓名（最多12字）" aria-label="玩家姓名"><button class="next" id="startGameBtn" type="button">開始挑戰</button><button class="next start-leaderboard" id="startLeaderboard" type="button">🏆 查看排行榜</button><div id="startError" class="start-error" aria-live="polite"></div></div></div><div id="leaderboardOverlay" class="lb-overlay" role="dialog" aria-modal="true" aria-label="排行榜"><div class="lb-panel"><div class="lb-head"><h2>🏆 孟母三遷排行榜</h2><button class="close" id="closeLeaderboard" aria-label="關閉排行榜">×</button></div><div id="myRankCard" class="lb-me-card"></div><p class="sub" id="leaderboardNote">☁️ 全班雲端排行榜｜同一姓名只保留最高分。</p><div id="leaderboardPodium" class="lb-podium"></div><div class="lb-section-title" id="leaderboardListTitle">第 4～20 名</div><div id="leaderboardList" class="lb-list"></div></div></div><div id="scoreBurst" class="score-burst" role="dialog" aria-modal="true" aria-live="assertive" aria-atomic="true"><div class="score-main"></div><div class="score-lines"></div><div class="score-sub"></div><button class="score-confirm" id="scoreConfirm" type="button">確認</button></div><audio id="bgm" preload="none" loop autoplay playsinline></audio><div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="放大預覽候選圖片"><div class="modal"><div class="modal-top"><strong>仔細觀察這張插畫</strong><button class="close" id="close" aria-label="關閉預覽">×</button></div><img id="preview" class="preview" alt="候選插畫放大預覽"><div class="modal-actions"><button class="cancel" id="cancel">再看看其他圖</button><button class="confirm" id="confirm">確認選這張</button></div></div></div><script>
+/* 孟母三遷｜天降文字雨：保留句子脈絡，只挖關鍵字 */
+#wordRain{margin-top:14px}
+.rain-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.rain-question{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;margin:18px 0;font-size:clamp(23px,5.5vw,34px);font-weight:850;line-height:1.7}
+.rain-char{min-width:1em;text-align:center}
+.rain-blank{width:1.45em;height:1.65em;border:2px dashed #b18153;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;background:#fff2d9;color:#27754a;vertical-align:middle;font-weight:900;cursor:pointer}
+.rain-blank.filled{border-style:solid;border-color:#4d9b64;background:#e8f6e9;cursor:default}
+.rain-blank.targeted{outline:3px solid #e8ac40;outline-offset:3px}
+.rain-stage{height:clamp(215px,36vh,315px);border:2px solid #d9c4a8;border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(#eaf4fc,#fbf7eb);touch-action:pan-y}
+.rain-stage:before{content:'文字從天空落下';position:absolute;top:50%;left:0;right:0;text-align:center;color:#a4a6a6;font-size:14px;pointer-events:none}
+.rain-drop{position:absolute;z-index:2;top:-52px;left:0;display:grid;place-items:center;width:46px;height:46px;border:2px solid #c9a375;border-radius:13px;background:#fffdf5;box-shadow:0 4px 10px #0002;font-size:25px;font-weight:900;color:#63452a;user-select:none;touch-action:none;cursor:grab;animation:wordFall 8s linear forwards}
+.rain-drop.selected{background:#f8db91;border-color:#ad753c}
+.rain-drop.dragging{position:fixed!important;z-index:200;animation:none!important;pointer-events:auto;cursor:grabbing;box-shadow:0 8px 20px #0004}
+@keyframes wordFall{from{transform:translateY(0)}to{transform:translateY(calc(clamp(215px,36vh,315px) + 105px))}}
+.rain-instructions{font-size:14px;color:#725c48;line-height:1.65}
+.rain-feedback{min-height:28px;font-weight:850;text-align:center;margin:12px 0 2px;color:#407852}
+.rain-feedback.error{color:#bd4e3d}
+.rain-result{font-size:20px;font-weight:850;text-align:center;line-height:1.65}
+@media(max-width:440px){.rain-drop{width:42px;height:42px;font-size:23px}.rain-question{gap:3px}.rain-blank{width:1.35em}}
+</style></head><body><main class="app"><header><div class="eyebrow">說文解圖 · 初入書院 · 一章6句</div><h1>《孟母三遷》</h1><p>古文原句 × 五柳先生與安貧樂道｜閱讀原文，破解經典插畫</p><p style="font-size:12px;opacity:.8;margin-top:6px">跟著陶淵明認識淡泊名利、安貧樂道的五柳先生。</p></header><div id="game"><div class="topline"><span id="progressLabel">第 1 / 12 句</span><span id="score">得分 0</span></div><div class="progress"><div id="progressFill"></div></div><div class="play-area"><section class="card"><div class="tag" id="chapterLabel">第一章・情節配對</div><p class="sentence" id="sentence"></p><div class="question-tools"><button class="translate-btn" id="translateToggle" type="button">📖 查看白話翻譯</button><div class="combo-badge" id="comboBadge" aria-live="polite">🔥 COMBO <span class="combo-number" id="comboNumber">0</span></div></div><div class="translation" id="translation" hidden></div><div class="target" id="target"><span class="plus">＋</span><span>選擇下方插畫填入</span></div><div id="feedback" class="feedback" aria-live="polite"></div></section><section class="library"><div class="library-head"><h2>候選插畫</h2><span id="remaining" class="tag"></span></div><p class="sub">點選縮圖 → 放大觀看 → 確認作答（每題固定4張）</p><div class="choices" id="choices"></div><div class="controls"><button id="reset">重新開始</button><button id="sound">音效：開</button><button id="music">♫ 背景音樂：準備中</button></div></section></div></div><section id="sorting" class="review"><h2 id="sortTitle">本章情節排序挑戰</h2><p class="sub">依故事順序點選下方「圖片＋原文」，放入上方對應位置。點擊已放入的圖片可以卸下。</p><div id="sortStats" class="tag"></div><button class="next sort-leaderboard" id="sortLeaderboard" type="button">🏆 查看排行榜</button><div class="sort-assists"><button class="next" id="sortHint" type="button" hidden>💡 幫我排一張</button><button class="next" id="sortRescue" type="button" hidden>🆘 幫我完成剩下排序</button></div><h3 class="sort-subtitle">故事順序（空格為窄條，放入後展開；點擊可卸下）</h3><div id="sortSlots" class="sort-slots"></div><h3 class="sort-subtitle">待排序漫畫</h3><div id="sortPool" class="sort-pool"></div><p id="sortFeedback" class="feedback" aria-live="polite"></p><button class="next" id="checkSort" disabled>確認排序</button></section><section id="wordRain" class="review" aria-label="天降文字雨填字挑戰"><div class="rain-head"><h2>🌧️ 天降文字雨</h2><span id="rainProgress" class="tag"></span></div><p class="rain-instructions">根據原文提示，把落下的正確文字拖進空格。也可以先點落字，再點空格。填錯不扣分，本關不額外計分。</p><div id="rainQuestion" class="rain-question" aria-label="填字題目"></div><div id="rainStage" class="rain-stage" aria-label="落下的文字區域"></div><p id="rainFeedback" class="rain-feedback" aria-live="polite"></p><button id="rainNext" type="button" class="next" hidden>下一題</button></section><section id="review" class="review"><h2>🎉 章節完成！本章漫畫回顧</h2><p class="sub">依照故事順序回顧本章各幅插畫與古文。</p><div class="review-grid" id="reviewGrid"></div><button class="next" id="again">進入下一章</button></section><section id="complete" class="review"><div class="complete-head"><h2>🎉 孟母三遷挑戰完成！6句完整連環漫畫</h2><div class="final-score" id="finalScore"><div class="breakdown"><div class="breakdown-row"><span>基本得分</span><strong id="finalBase">0</strong></div><div class="breakdown-row"><span>⚡速度獎勵</span><span class="score-plus" id="finalSpeed">+0</span></div><div class="breakdown-row"><span>🔥 Combo獎勵</span><span class="score-plus" id="finalCombo">+0</span></div><div class="breakdown-row breakdown-total"><span>最終得分</span><strong id="finalTotal">0</strong></div></div></div></div><p class="sub">三章五柳先生生活依序呈現。可向下捲動欣賞全部6幅畫與原文。</p><div class="academy-finish" id="academyFinish" aria-live="polite" hidden></div><div class="complete-actions"><button class="next" id="showLeaderboard">🏆 查看排行榜</button><a class="next portal-return" id="portalReturn" href="https://tanjchao.github.io/Shuowen-Jietu/index.html">🏮 返回說文解圖書院</a><button class="next" id="restartAll">重新挑戰6句</button></div><div class="review-grid" id="completeGrid"></div></section><p class="note">選圖答對100分，答錯前兩次各扣50分｜⚡ 0～5秒 +50、6～10秒 +10｜🔥 5秒內首次答對連擊：2 Combo +10、3 Combo +20、4 Combo +30、5 Combo以上 +50｜排序首輪每格50分、第二輪25分、第三輪起自行答對10分；系統提示0分</p></main><div id="playerStart" class="start-overlay"><div class="start-panel"><h2>《孟母三遷》挑戰</h2><p>請先輸入玩家姓名。完成挑戰後，成績會登上排行榜。</p><input id="playerNameInput" type="text" maxlength="12" autocomplete="off" placeholder="輸入姓名（最多12字）" aria-label="玩家姓名"><button class="next" id="startGameBtn" type="button">開始挑戰</button><button class="next start-leaderboard" id="startLeaderboard" type="button">🏆 查看排行榜</button><div id="startError" class="start-error" aria-live="polite"></div></div></div><div id="leaderboardOverlay" class="lb-overlay" role="dialog" aria-modal="true" aria-label="排行榜"><div class="lb-panel"><div class="lb-head"><h2>🏆 馬說排行榜</h2><button class="close" id="closeLeaderboard" aria-label="關閉排行榜">×</button></div><div id="myRankCard" class="lb-me-card"></div><p class="sub" id="leaderboardNote">☁️ 全班雲端排行榜｜同一姓名只保留最高分。</p><div id="leaderboardPodium" class="lb-podium"></div><div class="lb-section-title" id="leaderboardListTitle">第 4～20 名</div><div id="leaderboardList" class="lb-list"></div></div></div><div id="scoreBurst" class="score-burst" role="dialog" aria-modal="true" aria-live="assertive" aria-atomic="true"><div class="score-main"></div><div class="score-lines"></div><div class="score-sub"></div><button class="score-confirm" id="scoreConfirm" type="button">確認</button></div><audio id="bgm" preload="none" loop autoplay playsinline></audio><div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="放大預覽候選圖片"><div class="modal"><div class="modal-top"><strong>仔細觀察這張插畫</strong><button class="close" id="close" aria-label="關閉預覽">×</button></div><img id="preview" class="preview" alt="候選插畫放大預覽"><div class="modal-actions"><button class="cancel" id="cancel">再看看其他圖</button><button class="confirm" id="confirm">確認選這張</button></div></div></div><script>
 /* 說文解圖：本機學籍 v1｜跨 github.io 同來源 localStorage，與雲端排行榜分離 */
 (function(){
  'use strict';
@@ -472,7 +457,7 @@ function renderSorting(){
 }
 function completeSorting(messageText){
  if(sortFinishing)return;sortFinishing=true;renderSorting();$('#sortFeedback').textContent=messageText;
- setTimeout(()=>{poolOrder=[];$('#sorting').classList.remove('show');sortFinishing=false;startRain()},1200)
+ setTimeout(()=>{poolOrder=[];$('#sorting').classList.remove('show');sortFinishing=false;startWordRain()},1200)
 }
 function checkSorting(){if(sortFinishing||sortSlots.some(x=>x===null)||$('#scoreBurst').classList.contains('show'))return;sortAttempts++;
  let good=0,earned=0;for(let i=0;i<chapterSize(sortChapter);i++){
@@ -482,7 +467,7 @@ function checkSorting(){if(sortFinishing||sortSlots.some(x=>x===null)||$('#score
  if(sortAttempts!==1||good!==sortSlots.length)academyRunSortPerfect=false;
  baseScore+=earned;score+=earned;$('#score').textContent=`得分 ${score}`;
  const afterConfirm=()=>{
-   if(good===chapterSize(sortChapter)){completeSorting(`🎉 本章排序全部正確！本次加 ${earned} 分，總分 ${score} 分。接下來進入天降文字雨。`);return}
+   if(good===chapterSize(sortChapter)){completeSorting(`🎉 本章排序全部正確！本次加 ${earned} 分，總分 ${score} 分。接著進行天降文字雨。`);return}
    renderSorting();
    let help='';if(sortAttempts>=5)help=' 若還是卡住，可按「🆘 幫我完成剩下排序」。';else if(sortAttempts>=2)help=' 需要幫忙時，可按上方的「💡 幫我排一張」。';
    $('#sortFeedback').textContent='✓ 已保留 '+good+' 張位置正確的圖片，本次加 '+earned+' 分（總分 '+score+' 分）。其餘已退回下方，請繼續排序。'+help;window.scrollTo({top:0,behavior:'smooth'})
@@ -493,93 +478,114 @@ function useSortHint(){
  if(sortFinishing||sortAttempts<2)return;const i=sortLocked.findIndex(v=>!v);if(i<0)return;
  const correctId=chapterStart(sortChapter)+i+1;for(let j=0;j<chapterSize(sortChapter);j++){if(j!==i&&!sortLocked[j]&&sortSlots[j]===correctId)sortSlots[j]=null}
  sortSlots[i]=correctId;sortLocked[i]=true;sortScored[i]=true;sortHintCount++;renderSorting();
- if(sortLocked.every(Boolean)){play();completeSorting(`🎉 已用提示補上最後一格，本章故事順序完成！總分 ${score} 分。接下來進入天降文字雨。`);return}
+ if(sortLocked.every(Boolean)){play();completeSorting(`🎉 已用提示補上最後一格，本章故事順序完成！總分 ${score} 分。接著進行天降文字雨。`);return}
  $('#sortFeedback').textContent=`💡 系統已幫你排好第 ${i+1} 格並鎖定（這一格不計分）。剩下的請繼續挑戰！`;window.scrollTo({top:0,behavior:'smooth'})
 }
 function finishSortByHelp(){
  if(sortFinishing||sortAttempts<5)return;let helped=0;
  for(let i=0;i<chapterSize(sortChapter);i++){if(!sortLocked[i]){sortSlots[i]=chapterStart(sortChapter)+i+1;sortLocked[i]=true;sortScored[i]=true;helped++}}
- sortHintCount+=helped;renderSorting();play();completeSorting(`🆘 系統已幫你完成剩下 ${helped} 格。本章排序完成，總分 ${score} 分。一起進入天降文字雨吧！`)
+ sortHintCount+=helped;renderSorting();play();completeSorting(`🆘 系統已幫你完成剩下 ${helped} 格。本章排序完成，總分 ${score} 分。接著進行天降文字雨吧！`)
 }
 $('#checkSort').addEventListener('click',checkSorting);
 $('#sortHint').addEventListener('click',useSortHint);
 $('#sortRescue').addEventListener('click',finishSortByHelp);
 
-// ===== 《孟母三遷》文字雨：原版只有一章，因此從原版六句選兩句 =====
-// 純闖關、不加分：不觸及原有 base_score、speed_bonus、combo_bonus 或排行榜上限 1360。
-const RAIN_SENTENCES=[{scene:3,text:'遂遷居市旁'},{scene:5,text:'復徙居學宮之旁'}];
-const RAIN_DECOYS=[...'孟子幼時其舍近墓常嬉為墓間之事母曰此非吾所以處子也遂遷居市旁又嬉賈人炫賣復徙學宮之旁乃設俎豆揖讓進退'];
-let rainActive=false,rainPaused=false,rainRound=0,rainPos=0,rainDrops=[],rainFrame=0,rainPrev=0,rainSpawn=0,rainSerial=0,rainNextId=0,rainFinishTimer=0;
-function stopRain(){
- rainActive=false;rainPaused=false;cancelAnimationFrame(rainFrame);rainFrame=0;clearTimeout(rainFinishTimer);rainFinishTimer=0;
- rainDrops.forEach(d=>d.el.remove());rainDrops=[];$('#rainPause').textContent='⏸ 暫停';
+// 天降文字雨 v1.1：保留原文提示；短句只挖2字，長句挖3字。
+const WORD_RAIN_QUESTIONS=[
+ {sentence:'遂遷居市旁',blanks:[1,3],distractors:['徙','學','墓','商','母','子']},
+ {sentence:'復徙居學宮之旁',blanks:[1,3,4],distractors:['遷','市','墓','賈','嬉','舍']}
+];
+let rainIndex=0,rainAnswers=[],rainTimer=null,rainDone=false,rainSelected=null,rainAdvancing=false;
+function stopWordRain(){
+ if(rainTimer!==null){clearInterval(rainTimer);rainTimer=null}
+ rainSelected=null;
+ const stage=$('#rainStage');if(stage)stage.replaceChildren();
 }
-function startRain(){
- stopRain();rainRound=0;rainActive=true;
- $('#game').style.display='none';$('#sorting').classList.remove('show');$('#review').classList.remove('show');$('#rainGame').classList.add('show');
- startRainSentence();window.scrollTo({top:0,behavior:'smooth'});
+function startWordRain(){
+ stopWordRain();rainIndex=0;
+ $('#game').style.display='none';$('#review').classList.remove('show');$('#sorting').classList.remove('show');$('#wordRain').classList.add('show');
+ showRainQuestion();window.scrollTo({top:0,behavior:'smooth'});
 }
-function startRainSentence(){
- clearTimeout(rainFinishTimer);rainFinishTimer=0;
- rainDrops.forEach(d=>d.el.remove());rainDrops=[];rainPos=0;rainSpawn=0;rainSerial=0;rainPrev=0;rainPaused=false;
- $('#rainPause').textContent='⏸ 暫停';
- const entry=RAIN_SENTENCES[rainRound];$('#rainRound').textContent='第 '+(rainRound+1)+' / '+RAIN_SENTENCES.length+' 句・原文第'+entry.scene+'句';
- $('#rainSlots').innerHTML='';[...entry.text].forEach((_,i)=>{const el=document.createElement('span');el.className='rain-slot'+(i===0?' next':'');el.textContent='？';$('#rainSlots').appendChild(el)});
- $('#rainMessage').textContent='尋找並點擊第一個正確文字！';updateRainProgress();
- if(rainFrame)cancelAnimationFrame(rainFrame);rainFrame=requestAnimationFrame(rainTick);
+function rainFeedback(text,isError=false){const el=$('#rainFeedback');el.textContent=text;el.classList.toggle('error',isError)}
+function showRainQuestion(){
+ stopWordRain();rainDone=false;rainAdvancing=false;rainAnswers=[];
+ const q=WORD_RAIN_QUESTIONS[rainIndex],wrap=$('#rainQuestion');wrap.replaceChildren();
+ $('#rainProgress').textContent=`第 ${rainIndex+1} / ${WORD_RAIN_QUESTIONS.length} 題`;
+ $('#rainNext').hidden=true;
+ rainFeedback('找出正確的字，填入句中的空格。');
+ [...q.sentence].forEach((char,pos)=>{
+  if(q.blanks.includes(pos)){
+   const blank=document.createElement('button');blank.type='button';blank.className='rain-blank';blank.dataset.position=String(pos);
+   blank.setAttribute('aria-label',`第 ${pos+1} 字空格`);
+   blank.addEventListener('click',()=>{if(rainSelected)placeRainLetter(rainSelected,blank)});
+   wrap.append(blank);rainAnswers.push(pos);
+  }else{const span=document.createElement('span');span.className='rain-char';span.textContent=char;wrap.append(span)}
+ });
+ // 立即出現第一批，之後持續補字，避免正確字漏接後無法完成。
+ for(let n=0;n<3;n++)setTimeout(()=>{if($('#wordRain').classList.contains('show')&&!rainDone)spawnRainDrop()},n*350);
+ rainTimer=setInterval(spawnRainDrop,900);
 }
-function updateRainProgress(){const n=RAIN_SENTENCES[rainRound].text.length;$('#rainCaught').textContent='已接 '+rainPos+' / '+n+' 字';}
-function rainPickChar(){
- const target=RAIN_SENTENCES[rainRound].text[rainPos];
- // 每三個出現的字牌至少有一個是目標字，降低因隨機導致久等的風險。
- if(rainSerial++%3===0||Math.random()<.27)return target;
- const pool=RAIN_DECOYS.filter(x=>x!==target);return pool[Math.floor(Math.random()*pool.length)];
+function spawnRainDrop(){
+ if(rainDone||!$('#wordRain').classList.contains('show'))return;
+ const q=WORD_RAIN_QUESTIONS[rainIndex],stage=$('#rainStage');
+ if(stage.querySelectorAll('.rain-drop').length>=12)return;
+ const unfilled=[...$('#rainQuestion').querySelectorAll('.rain-blank:not(.filled)')].map(b=>q.sentence[Number(b.dataset.position)]);
+ if(!unfilled.length)return;
+ // 正確字佔大多數，並輪流補給；少數干擾字避免只靠隨機點選。
+ const char=Math.random()<.72?unfilled[Math.floor(Math.random()*unfilled.length)]:q.distractors[Math.floor(Math.random()*q.distractors.length)];
+ const tile=document.createElement('button');tile.type='button';tile.className='rain-drop';tile.textContent=char;tile.setAttribute('aria-label','落字 '+char);
+ const available=Math.max(1,stage.clientWidth-48);
+ tile.style.left=Math.round(Math.random()*available)+'px';
+ tile.addEventListener('animationend',()=>{if(tile.isConnected)tile.remove();if(rainSelected===tile)rainSelected=null});
+ let pointerDown=null,dragging=false;
+ tile.addEventListener('pointerdown',e=>{
+  if(rainDone)return;pointerDown={x:e.clientX,y:e.clientY};dragging=false;
+  try{tile.setPointerCapture(e.pointerId)}catch(_){}
+ });
+ tile.addEventListener('pointermove',e=>{
+  if(!pointerDown||rainDone)return;
+  if(!dragging&&Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y)>7){
+   dragging=true;const rect=tile.getBoundingClientRect();tile.style.width=rect.width+'px';tile.style.height=rect.height+'px';tile.style.left=rect.left+'px';tile.style.top=rect.top+'px';tile.style.transform='none';tile.classList.add('dragging');
+  }
+  if(dragging){tile.style.left=(e.clientX-23)+'px';tile.style.top=(e.clientY-23)+'px';}
+ });
+ tile.addEventListener('pointerup',e=>{
+  if(!pointerDown)return;pointerDown=null;
+  if(dragging){
+   dragging=false;tile.style.pointerEvents='none';
+   const hit=document.elementFromPoint(e.clientX,e.clientY);tile.style.pointerEvents='';
+   const blank=hit?.closest?.('.rain-blank:not(.filled)');
+   if(blank)placeRainLetter(tile,blank);else{tile.remove();if(rainSelected===tile)rainSelected=null;rainFeedback('請把字拖到上方空格，或點選文字後再點空格。',true)}
+  }else{selectRainLetter(tile)}
+ });
+ tile.addEventListener('pointercancel',()=>{pointerDown=null;tile.remove();if(rainSelected===tile)rainSelected=null});
+ tile.addEventListener('click',e=>{if(e.detail===0)selectRainLetter(tile)});
+ stage.append(tile);
 }
-function rainDropCreate(){
- const field=$('#rainField');const w=field.clientWidth;
- const size=Math.min(61,window.innerWidth<=420?47:Math.max(45,window.innerWidth*.1));
- const occupied=rainDrops.filter(d=>d.y<90).map(d=>d.x);
- let x=Math.random()*Math.max(1,w-size-8)+4;
- for(let i=0;i<8&&occupied.some(xx=>Math.abs(xx-x)<size+7);i++)x=Math.random()*Math.max(1,w-size-8)+4;
- const c=rainPickChar();const el=document.createElement('button');el.type='button';el.className='rain-drop';el.textContent=c;el.setAttribute('aria-label','接住文字 '+c);
- const id=++rainNextId;const d={id,el,c,x,y:-size-6,vy:92+Math.random()*30};
- el.addEventListener('pointerdown',e=>{e.preventDefault();rainCatch(id)});
- // 鍵盤無障礙操作
- el.addEventListener('click',e=>{if(e.detail===0)rainCatch(id)});
- field.appendChild(el);rainDrops.push(d);
+function selectRainLetter(tile){
+ if(rainDone||!tile.isConnected)return;
+ if(rainSelected?.isConnected)rainSelected.classList.remove('selected');
+ rainSelected=tile;tile.classList.add('selected');
+ rainFeedback(`已選「${tile.textContent}」，請點上方要填入的空格。`);
 }
-function rainCatch(id){
- if(!rainActive||rainPaused||rainFinishTimer)return;
- const d=rainDrops.find(x=>x.id===id);if(!d)return;
- const target=RAIN_SENTENCES[rainRound].text[rainPos];
- if(d.c!==target){d.el.classList.add('wrong');$('#rainMessage').textContent='這個字不是目前所需的字，再看看！';if(soundOn)wrong();removeRainDrop(id);return}
- d.el.classList.add('correct');removeRainDrop(id);
- const cells=$('#rainSlots').children;cells[rainPos].textContent=target;cells[rainPos].classList.remove('next');cells[rainPos].classList.add('done');rainPos++;
- if(soundOn){try{const c=ctxAudio();if(c)tone(560+rainPos*68,c.currentTime,.11,.07,'triangle')}catch(e){}}
- if(rainPos<cells.length){cells[rainPos].classList.add('next');$('#rainMessage').textContent='✓ 正確！下一字：繼續觀察下落的文字';updateRainProgress();return}
- updateRainProgress();$('#rainMessage').textContent='🎉 「'+RAIN_SENTENCES[rainRound].text+'」完成！';play();
- rainFinishTimer=setTimeout(()=>{
-  rainFinishTimer=0;
-  if(!rainActive)return;
-  if(rainRound<RAIN_SENTENCES.length-1){rainRound++;startRainSentence()}
-  else{stopRain();$('#rainGame').classList.remove('show');finish()}
- },1450);
+function placeRainLetter(tile,blank){
+ if(rainDone||!tile?.isConnected||blank.classList.contains('filled'))return;
+ const q=WORD_RAIN_QUESTIONS[rainIndex],expected=q.sentence[Number(blank.dataset.position)];
+ if(tile.textContent!==expected){rainFeedback(`「${tile.textContent}」不是這格的字，再試一次！`,true);tile.remove();if(rainSelected===tile)rainSelected=null;return;}
+ blank.textContent=expected;blank.classList.add('filled');blank.setAttribute('aria-label','已填入 '+expected);
+ tile.remove();if(rainSelected===tile)rainSelected=null;
+ if([...$('#rainQuestion').querySelectorAll('.rain-blank')].every(b=>b.classList.contains('filled'))){
+  rainDone=true;if(rainTimer!==null){clearInterval(rainTimer);rainTimer=null}
+  $('#rainStage').replaceChildren();play();rainFeedback('🎉 正確！'+q.sentence+'。');
+  $('#rainNext').hidden=false;$('#rainNext').textContent=rainIndex+1<WORD_RAIN_QUESTIONS.length?'進入下一題':'完成文字雨，觀看漫畫回顧';
+ }else{play();rainFeedback('✓ 填對了！繼續接住其他文字。')}
 }
-function removeRainDrop(id){const i=rainDrops.findIndex(d=>d.id===id);if(i>=0){rainDrops[i].el.remove();rainDrops.splice(i,1)}}
-function rainTick(t){
- if(!rainActive)return;
- const dt=rainPrev?Math.min((t-rainPrev)/1000,.06):0;rainPrev=t;
- if(!rainPaused&&!rainFinishTimer){
-  rainSpawn+=dt;
-  if(rainSpawn>.58){rainSpawn=0;if(rainDrops.length<12)rainDropCreate()}
-  const floor=$('#rainField').clientHeight;
-  for(const d of [...rainDrops]){d.y+=d.vy*dt;d.el.style.transform=`translate(${d.x}px,${d.y}px)`;if(d.y>floor)removeRainDrop(d.id)}
- }
- rainFrame=requestAnimationFrame(rainTick);
-}
-$('#rainHint').addEventListener('click',()=>{if(!rainActive)return;$('#rainMessage').textContent='💡 接下來要找的是「'+RAIN_SENTENCES[rainRound].text[rainPos]+'」';});
-$('#rainRestart').addEventListener('click',()=>{if(rainActive)startRainSentence()});
-$('#rainPause').addEventListener('click',()=>{if(!rainActive||rainFinishTimer)return;rainPaused=!rainPaused;$('#rainPause').textContent=rainPaused?'▶ 繼續':'⏸ 暫停';$('#rainMessage').textContent=rainPaused?'已暫停文字雨':'文字雨繼續！'});
+$('#rainNext').addEventListener('click',()=>{
+ if(!rainDone||rainAdvancing)return;rainAdvancing=true;
+ if(rainIndex+1<WORD_RAIN_QUESTIONS.length){rainIndex++;showRainQuestion()}
+ else{stopWordRain();$('#wordRain').classList.remove('show');finish()}
+ window.scrollTo({top:0,behavior:'smooth'});
+});
 
 // ===== v3.0 雲端排行榜（Supabase） =====
 // 建立 Supabase 專案後，只要把下面兩個值換掉即可啟用跨裝置排行榜。
@@ -728,7 +734,7 @@ function finish(){
  $('#again').textContent=reviewChapter<CHAPTER_NAMES.length?'進入'+chapterTitle(reviewChapter)+'（第'+(index+1)+'～'+chapterEnd(reviewChapter)+'句）':'觀看6句完整連環漫畫';
  window.scrollTo({top:0,behavior:'smooth'});
 }
-function reset(markNewRun=true){index=0;score=0;baseScore=0;speedBonusTotal=0;comboBonusTotal=0;comboCount=0;stopComboFade();questionStartTime=null;questionRenderToken++;wrongCount=0;academyRunWrong=false;academyRunSortPerfect=true;academyFinishShown=false;picked=null;busy=false;order=[];reviewChapter=0;hintUsed=new Set();poolOrder=[];if(markNewRun){scoreSaved=false;cloudScoreSaved=false;cloudSavePending=false;cloudLastError=''}updateComboBadge();clearTimeout(scoreBurstTimer);scoreBurstConfirmAction=null;if($('#scoreBurst'))$('#scoreBurst').classList.remove('show');$('#sorting').classList.remove('show');stopRain();$('#rainGame').classList.remove('show');$('#game').style.display='block';$('#review').classList.remove('show');$('#complete').classList.remove('show');closePreview();message('',true);render();window.scrollTo({top:0,behavior:'smooth'})}
+function reset(markNewRun=true){index=0;score=0;baseScore=0;speedBonusTotal=0;comboBonusTotal=0;comboCount=0;stopComboFade();questionStartTime=null;questionRenderToken++;wrongCount=0;academyRunWrong=false;academyRunSortPerfect=true;academyFinishShown=false;picked=null;busy=false;order=[];reviewChapter=0;hintUsed=new Set();poolOrder=[];if(markNewRun){scoreSaved=false;cloudScoreSaved=false;cloudSavePending=false;cloudLastError=''}updateComboBadge();clearTimeout(scoreBurstTimer);scoreBurstConfirmAction=null;if($('#scoreBurst'))$('#scoreBurst').classList.remove('show');$('#sorting').classList.remove('show');stopWordRain();$('#wordRain').classList.remove('show');$('#game').style.display='block';$('#review').classList.remove('show');$('#complete').classList.remove('show');closePreview();message('',true);render();window.scrollTo({top:0,behavior:'smooth'})}
 
 function academySyncPanel(){
  const box=document.getElementById('academyFinish');if(!box)return null;
@@ -764,7 +770,7 @@ async function saveAcademyCloud(){
  try{return await job}finally{if(academySyncPromise===job)academySyncPromise=null}
 }
 function showComplete(){
- $('#review').classList.remove('show');$('#game').style.display='none';$('#complete').classList.add('show');try{const key='shuowen_progress_v1';const progress=JSON.parse(localStorage.getItem(key)||'{}');if(!progress.completed||typeof progress.completed!=='object')progress.completed={};progress.completed['three_times']={at:Date.now()};localStorage.setItem(key,JSON.stringify(progress));}catch(e){console.warn('書院通關紀錄未能保存',e)}const academyAward=!academyFinishShown?window.ShuowenAcademy.finish(playerName,'three_times',{score:score,questionCount:scenes.length,chapterSize:CHAPTER_SIZE,noWrong:!academyRunWrong,noHint:hintUsed.size===0,sortPerfect:academyRunSortPerfect}):null;academyFinishShown=true;renderAcademyFinish(academyAward);void saveAcademyCloud();saveLeaderboardScore();$('#finalBase').textContent=baseScore;$('#finalSpeed').textContent='+'+speedBonusTotal;$('#finalCombo').textContent='+'+comboBonusTotal;$('#finalTotal').textContent=score;$('#complete .sub').textContent=playerName+'，恭喜完成挑戰！孟母三遷的故事挑戰已完成，以下可回顧全部6幅畫與原文。';
+ $('#review').classList.remove('show');$('#game').style.display='none';$('#complete').classList.add('show');try{const key='shuowen_progress_v1';const progress=JSON.parse(localStorage.getItem(key)||'{}');if(!progress.completed||typeof progress.completed!=='object')progress.completed={};progress.completed['three_times']={at:Date.now()};localStorage.setItem(key,JSON.stringify(progress));}catch(e){console.warn('書院通關紀錄未能保存',e)}const academyAward=!academyFinishShown?window.ShuowenAcademy.finish(playerName,'three_times',{score:score,questionCount:scenes.length,chapterSize:CHAPTER_SIZE,noWrong:!academyRunWrong,noHint:hintUsed.size===0,sortPerfect:academyRunSortPerfect}):null;academyFinishShown=true;renderAcademyFinish(academyAward);void saveAcademyCloud();saveLeaderboardScore();$('#finalBase').textContent=baseScore;$('#finalSpeed').textContent='+'+speedBonusTotal;$('#finalCombo').textContent='+'+comboBonusTotal;$('#finalTotal').textContent=score;$('#complete .sub').textContent=playerName+'，恭喜完成挑戰！三章五柳先生生活依序呈現，以下可回顧全部6幅畫與原文。';
  const grid=$('#completeGrid');grid.innerHTML='';
  scenes.forEach(scene=>{const card=document.createElement('article');card.className='review-item';
  const img=document.createElement('img');img.src=scene.src;img.alt='第'+scene.id+'句插畫';img.loading='lazy';img.decoding='async';
